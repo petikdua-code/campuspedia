@@ -1,4 +1,4 @@
-@extends('templates/main')
+@extends('auth/main')
 
 @section('title', 'Login Campuspedia')
 

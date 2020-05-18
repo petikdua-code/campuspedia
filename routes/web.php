@@ -21,3 +21,5 @@ Route::get('/', 'auth@index');
 Route::post('/auth', 'auth@store');
 
 Route::get('/user', 'user@index');
+
+Route::get('/absens/{session}', 'Absens@index');

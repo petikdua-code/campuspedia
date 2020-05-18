@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Facades\Session;
 
 class Auth extends Controller
 {
@@ -43,6 +44,10 @@ class Auth extends Controller
         if($data) {
             if($password == $data->password) {
                 if($data->admin == 0){
+                    Session::put('nama',$data->nama);
+                    Session::put('email',$data->email);
+                    Session::put('id',$data->id);
+                    Session::put('login',TRUE);
                     return redirect('/user')->with('status', 'Data sipp joss');
                     // return "user biasa";
                 } elseif($data->admin == 1) {
