@@ -40,6 +40,12 @@ Route::get('/admin/index', 'Admin@index');
 
 Route::get('/admin/user_table', 'Admin@show');
 
+Route::get('/admin/user_table/detail/{user}', 'Admin@edit');
+
+Route::get('/admin/destroy/{user}', 'Admin@destroy');
+
+Route::get('/absen/destroy/{user}', 'Admin@destroy_absen');
+
 // Route::get('/admin/create/user', function () {
 //     return dd("hallo user");
 // });

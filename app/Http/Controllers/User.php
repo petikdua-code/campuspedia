@@ -51,12 +51,17 @@ class User extends Controller
     public function show($id)
     {
         //
+
+        date_default_timezone_set('Asia/Jakarta');
+
+        $users_absen = Absen::all();
         $user = Absen::where('id', $id)->first();
         $email = $user->email;
         $user_detail = DB::table('users')->where('email', $email)->first();
         return view('user/detail', [
             'user' => $user,
-            'user_detail' => $user_detail
+            'user_detail' => $user_detail,
+            'users_absen'=> $users_absen
         ]);
     }
 
@@ -250,7 +255,7 @@ class User extends Controller
                     'durasi' => $durasi
                 ]);
                 // return dd($finish . $time_brake1Start);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
 
             } elseif ($finish >= $time_brake2Start && $finish < $time_brake1End) {
                 // istirahat 1
@@ -261,7 +266,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake1End && $finish < $time_brake2Start) {
                 // siang
@@ -272,7 +277,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake2Start && $finish < $time_brake2End) {
                 // istirahat 2
@@ -283,7 +288,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake2End && $finish < $time_brake3Start) {
                 // sore
@@ -294,7 +299,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake3Start && $finish < $time_brake3End) {
                 // istirahat 3
@@ -305,7 +310,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake3End && $finish < $end){
                 // malam
@@ -316,7 +321,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             }
             
@@ -331,7 +336,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake2Start && $finish < $time_brake2End) {
                 // istirahat 2
@@ -342,7 +347,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake2End && $finish < $time_brake3Start) {
                 // sore
@@ -353,7 +358,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake3Start && $finish < $time_brake3End) {
                 // istirahat 3
@@ -364,7 +369,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake3End && $finish < $end){
                 // malam
@@ -375,7 +380,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             }
 
@@ -390,7 +395,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake2Start && $finish < $time_brake2End) {
                 // istirahat 2
@@ -401,7 +406,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake2End && $finish < $time_brake3Start) {
                 // sore
@@ -412,7 +417,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake3Start && $finish < $time_brake3End) {
                 // istirahat 3
@@ -423,7 +428,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake3End && $finish < $end){
                 // malam
@@ -434,7 +439,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             }
 
@@ -449,7 +454,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake3Start && $finish < $time_brake3End) {
                 // istirahat 3
@@ -460,7 +465,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake3End && $finish < $end){
                 // malam
@@ -471,7 +476,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             }
 
@@ -486,7 +491,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake3Start && $finish < $time_brake3End) {
                 // istirahat 3
@@ -497,7 +502,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             } elseif ($finish >= $time_brake3End && $finish < $end){
                 // malam
@@ -508,7 +513,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             }
             
@@ -523,7 +528,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             }
 
@@ -538,7 +543,7 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                return redirect('/');
+                return redirect('/')->with('success', 'Anda telah melakukan Check Out, sampai jumpa esok hari');
                 
             }
 
@@ -546,16 +551,6 @@ class User extends Controller
             return "waktu salah";
         }
         
-    }
-
-    public function update_data(Request $request, Absen $user_absen, $durasi){
-        // Absen::where('id', $user_update_id)->update([
-        //     'job' => $request->job,
-        //     'masalah' => $request->masalah,
-        //     'finish' => time(),
-        //     'durasi' => $durasi
-        // ]);
-        // return redirect('/');
     }
 
     /**

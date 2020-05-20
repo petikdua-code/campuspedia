@@ -15,6 +15,9 @@
                     {{-- @method('patch') --}}
                     <label for="">Nama Lengkap</label>
                     <input type="text" class="form-control" id="" name="nama" placeholder="Alfian Prisma Yopiangga">
+                    @error('nama')
+                        <div class="invalid-feedback">{{ "hallo" }}</div>
+                    @enderror
                   </div>
 
                   <div class="form-group">
@@ -45,7 +48,7 @@
                   <br>
                   <button type="submit" class="btn btn-primary">Tambah</button>
                   {{-- <button class="btn btn-warning">Hapus Absen</button> --}}
-                  <a class="btn btn-light" href="">Kembali</a>
+                  <a class="btn btn-light" href="/admin/index">Kembali</a>
 
             </form>
 

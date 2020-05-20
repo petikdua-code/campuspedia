@@ -8,6 +8,18 @@
     <h1 class="mt-5">Detail Karyawan</h1>
     <div class="row">
         <div class="col-8">
+          
+          @if (session('danger'))
+          <div class="alert alert-danger">
+              {{session('danger')}}
+          </div>
+           @endif
+
+           @if (session('success'))
+          <div class="alert alert-success">
+              {{session('success')}}
+          </div>
+           @endif
 
             <form action="" class="mt-2">
                 <div class="form-group">
@@ -33,17 +45,43 @@
 
                   <div class="form-group">
                     <label for="">Check In</label>
-                    <input type="text" class="form-control" id="" value="{{$user->start}}">
+                    <input type="text" class="form-control" id="" value="<?= date('H:i', $user->start) ?>">
                   </div>
+    
+              <?php  if($user->finish == ''){ ?>
+                    <div class="form-group">
+                      <label for="">Check Out</label>
+                      <input type="text" class="form-control" id="" value="-">
+                    </div>
 
-                  <div class="form-group">
-                    <label for="">Check Out</label>
-                    <input type="text" class="form-control" id="" value="{{$user->finish}}">
-                  </div>
+             <?php  } else { ?>
+                    <div class="form-group">
+                      <label for="">Check Out</label>
+                      <input type="text" class="form-control" id="" value="<?= date('H:i', $user->finish) ?>">
+                    </div>
+            <?php   }   ?>
+                  
+
+                  <?php 
+                        if($user->durasi == ''){ ?>
+                          <div class="form-group">
+                            <label for="">Durasi</label>
+                            <input type="text" class="form-control" id="" value="-">
+                          </div>
+                  <?php   } else { 
+                          $durasi = $user->durasi; 
+                          $jam = Floor($durasi/(60*60));
+                          $menit = floor(($durasi - ($jam * 3600)) / 60);?>
+                          <div class="form-group">
+                            <label for="">Durasi</label>
+                            <input type="text" class="form-control" id="" value="{{$jam . ' Jam ' . $menit . ' Menit '}}">
+                          </div>
+                    <?php      } ?>
+                        
 
                   <div class="form-group">
                     <label for="">Durasi</label>
-                    <input type="text" class="form-control" id="" value="{{$user->durasi}}">
+                    <input type="text" class="form-control" id="">
                   </div>
 
                   <div class="form-group">
@@ -56,9 +94,8 @@
                     <textarea class="form-control" id="" rows="3">{{$user->masalah}}</textarea>
                   </div>
 
-                  <button class="btn btn-danger">Hapus Karyawan</button>
-                  {{-- <button class="btn btn-warning">Hapus Absen</button> --}}
-                  <button class="btn btn-light">Kembali</button>
+                  <a class="btn btn-danger" href="/absen/destroy/{{$user->id}}">Hapus Karyawan</a>
+                  <a class="btn btn-light" href="/admin/index">Kembali</a>
 
             </form>
 

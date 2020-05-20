@@ -7,8 +7,20 @@
 <div class="container">
     <h1 class="mt-3">Daftar Karyawan</h1>
 
+    @if (session('danger'))
+    <div class="alert alert-danger mt-3">
+        {{session('danger')}}
+    </div>
+     @endif
+
+     @if (session('success'))
+    <div class="alert alert-success mt-3">
+        {{session('success')}}
+    </div>
+     @endif
+
     <a href="/admin/create" class="btn btn-primary mt-3">Tambah Karyawan</a>
-    <a href="/admin/user_table" class="btn btn-secondary mt-3">Table Karyawan</a>
+    <a href="/admin/index" class="btn btn-secondary mt-3">Absen Karyawan</a>
     <div class="row">
         <div class="col">
             <table class="table mt-3">
@@ -33,8 +45,8 @@
                     <td>{{$user->telp}}</td>
                     <td>{{$user->admin}}</td>
                     <td>
-                        <a href="/user/detail/{{$user->id}}" class="badge badge-info">Detail</a>
-                        <a href="/user/detail/{{$user->id}}" class="badge badge-danger">Delete</a>
+                        <a href="/admin/user_table/detail/{{$user->id}}" class="badge badge-info">Detail</a>
+                        <a href="/admin/destroy/{{$user->id}}" class="badge badge-danger">Delete</a>
                     </td>
 
                   </tr>

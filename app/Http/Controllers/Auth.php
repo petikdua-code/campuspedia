@@ -59,10 +59,10 @@ class Auth extends Controller
                         if($data_absen->tgl == $tgl){
 
                             if($data_absen->finish != ""){
-                                return redirect('/');
+                                return redirect('/')->with('danger', 'Anda sudah melakukan Check Out hari ini, kembali lagi besuk !');
                             }
                             // wis absen
-                            return redirect('/user/absen')->with('status', 'Data sipp joss');
+                            return redirect('/user/absen')->with('danger', 'Anda sudah absen hari ini');
                         } else {
                             // gung absen
                             return redirect('/user')->with('status', 'Data sipp joss');
@@ -76,10 +76,10 @@ class Auth extends Controller
                     return view("/admin/index", ['users_absen' => $users_absen]);
                 }
             } else {
-                return "pass salah";
+                return redirect("/")->with('danger', 'Email atau password salah!');
             }
         } else {
-            return "email nggk ada";
+            return redirect("/")->with('danger', 'Email atau password salah!');
         }
 
        

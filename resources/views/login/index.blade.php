@@ -21,6 +21,18 @@
                     <h1 class="h4 text-gray-900 mb-4">Login Page</h1>
                   </div>
 
+                  @if (session('danger'))
+                  <div class="alert alert-danger">
+                      {{session('danger')}}
+                  </div>
+                   @endif
+
+                   @if (session('success'))
+                  <div class="alert alert-success">
+                      {{session('success')}}
+                  </div>
+                   @endif
+
                   <form class="user" method="post" action="/auth">
                     @csrf
                     <div class="form-group">
@@ -38,11 +50,9 @@
 
                   </form>
                   <hr>
+
                   <div class="text-center">
-                    <a class="small" href="forgot-password.html">Forgot Password?</a>
-                  </div>
-                  <div class="text-center">
-                    <a class="small" href="">Create an Account!</a>
+                    <a class="small" href="#">Campuspedia Absensi</a>
                   </div>
                 </div>
               </div>

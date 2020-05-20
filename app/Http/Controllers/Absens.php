@@ -32,7 +32,7 @@ class Absens extends Controller
         $absen->durasi = '';
         $absen->save();
 
-        return redirect('/')->with('status', 'Data sipp absen joss');
+        return redirect('/')->with('success', 'Absen berhasil, anda dapat melakukan Check Out sebelum pulang');
 
     }
 
