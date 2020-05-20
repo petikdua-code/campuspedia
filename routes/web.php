@@ -30,4 +30,16 @@ Route::get('/user', 'user@index');
 
 Route::get('/absens/{session}', 'Absens@index');
 
+Route::get('/user/detail/{id}', 'user@show');
+
+Route::get('/admin/create', 'Admin@create');
+
+Route::post('/admin/create', 'Admin@store');
+
+Route::get('/admin/index', 'Admin@index');
+
+// Route::get('/admin/create/user', function () {
+//     return dd("hallo user");
+// });
+
 // Route::get('/absens/{session}')

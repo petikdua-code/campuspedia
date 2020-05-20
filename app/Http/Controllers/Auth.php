@@ -72,7 +72,8 @@ class Auth extends Controller
                     }
                     
                 } elseif($data->admin == 1) {
-                    return "admin super";
+                    $users_absen = Absen::all();
+                    return view("/admin/index", ['users_absen' => $users_absen]);
                 }
             } else {
                 return "pass salah";

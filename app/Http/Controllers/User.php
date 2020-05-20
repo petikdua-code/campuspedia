@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Absen;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 
 class User extends Controller
@@ -50,6 +51,13 @@ class User extends Controller
     public function show($id)
     {
         //
+        $user = Absen::where('id', $id)->first();
+        $email = $user->email;
+        $user_detail = DB::table('users')->where('email', $email)->first();
+        return view('user/detail', [
+            'user' => $user,
+            'user_detail' => $user_detail
+        ]);
     }
 
     /**
@@ -81,6 +89,8 @@ class User extends Controller
             'job' => 'required',
             'masalah' => 'required'
         ]); 
+
+        date_default_timezone_set('Asia/Jakarta');
         
         $user_update = Absen::where('email', $user_absen->email)->latest()->first();
         $user_update_id = $user_update->id;
@@ -94,6 +104,8 @@ class User extends Controller
 
         $time_brake1Start = $start_date_new + 43200;
         $time_brake1End = $start_date_new + 46800;
+
+        // return dd($time_brake1Start);
 
         $time_brake2Start = $start_date_new + 57600;
         $time_brake2End = $start_date_new + 61200;
@@ -237,10 +249,10 @@ class User extends Controller
                     'finish' => time(),
                     'durasi' => $durasi
                 ]);
-                // return dd("hallo");
+                // return dd($finish . $time_brake1Start);
                 return redirect('/');
 
-            } elseif ($finish >= $time_brake1Start && $finish < $time_brake1End) {
+            } elseif ($finish >= $time_brake2Start && $finish < $time_brake1End) {
                 // istirahat 1
                 $durasi = $time_brake1Start - $start;
                 Absen::where('id', $user_update_id)->update([

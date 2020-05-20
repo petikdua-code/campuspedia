@@ -1,6 +1,6 @@
 @extends('user/main')
 
-@section('title', 'Campuspedia')
+@section('title', 'Campuspedia - Admin')
 
 @section('container')
         
