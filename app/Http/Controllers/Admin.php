@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Absen;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 
 class Admin extends Controller
@@ -64,9 +65,12 @@ class Admin extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
+        $users = DB::table('users')->get();
+        // return dd($users->nama);
+        return view('admin/users', ['users'=> $users]);
     }
 
     /**

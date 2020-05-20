@@ -38,6 +38,8 @@ Route::post('/admin/create', 'Admin@store');
 
 Route::get('/admin/index', 'Admin@index');
 
+Route::get('/admin/user_table', 'Admin@show');
+
 // Route::get('/admin/create/user', function () {
 //     return dd("hallo user");
 // });

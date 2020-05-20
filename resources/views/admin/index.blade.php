@@ -7,8 +7,8 @@
 <div class="container">
     <h1 class="mt-3">Daftar Absen Karyawan</h1>
 
-    <a href="/admin/create" class="btn btn-primary mt-2">Tambah Karyawan</a>
-    <a href="/admin/user_table" class="btn btn-secondary mt-2">Table Karyawan</a>
+    <a href="/admin/create" class="btn btn-primary mt-3">Tambah Karyawan</a>
+    <a href="/admin/user_table" class="btn btn-secondary mt-3">Table Karyawan</a>
     <div class="row">
         <div class="col">
             <table class="table mt-3">
