@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Absen;
+use App\User;
+use Illuminate\Support\Facades\Session;
+
 
 class Absens extends Controller
 {
@@ -14,25 +17,23 @@ class Absens extends Controller
      */
     public function index()
     {
-        // $absens = Absen::all();
-        // Absen::create([
-        //     'id' => '',
-        //     'nama' => Session('nama'),
-        //     'job' => '-',
-        //     'masalah' => '-',
-        //     'start' => time(),
-        //     'finish' => '-',
-        //     'tgl' => '-'
-        // ]);
-
+        $id = Session::get('id');
+        $data = User::where('id', $id)->first();
+        
+        date_default_timezone_set('Asia/Jakarta');
         $absen = new Absen;
-        $absen->nama = Session('nama');
-        $absen->job = '1';
-        $absen->masalah = '1';
-        $absen->start = '1';
-        $absen->finish = '1';
-        $absen->tgl = '1';
+        $absen->nama = $data->nama;
+        $absen->email = $data->email;
+        $absen->job = '';
+        $absen->masalah = '';
+        $absen->start = time();
+        $absen->finish = '';
+        $absen->tgl = date('d-m-Y');
+        $absen->durasi = '';
         $absen->save();
+
+        return redirect('/')->with('status', 'Data sipp absen joss');
+
     }
 
     /**

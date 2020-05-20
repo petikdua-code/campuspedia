@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Absen;
 use Illuminate\Support\Facades\Session;
 
 class Auth extends Controller
@@ -39,17 +40,37 @@ class Auth extends Controller
         //
         $email = $request->email;
         $password = $request->password;
+        date_default_timezone_set('Asia/Jakarta');
 
         $data = User::where('email', $email)->first();
         if($data) {
             if($password == $data->password) {
                 if($data->admin == 0){
+                    $tgl = date('d-m-Y');
                     Session::put('nama',$data->nama);
                     Session::put('email',$data->email);
                     Session::put('id',$data->id);
                     Session::put('login',TRUE);
-                    return redirect('/user')->with('status', 'Data sipp joss');
-                    // return "user biasa";
+                    
+                    $data_absen = Absen::where('email', $data->email)->latest()->first();
+                    // return dd($data_absen->id);
+                    if($data_absen){
+
+                        if($data_absen->tgl == $tgl){
+
+                            if($data_absen->finish != ""){
+                                return redirect('/');
+                            }
+                            // wis absen
+                            return redirect('/user/absen')->with('status', 'Data sipp joss');
+                        } else {
+                            // gung absen
+                            return redirect('/user')->with('status', 'Data sipp joss');
+                        }
+                    } else {
+                        return redirect('/user')->with('status', 'Data sipp joss');
+                    }
+                    
                 } elseif($data->admin == 1) {
                     return "admin super";
                 }

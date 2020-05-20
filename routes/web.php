@@ -20,6 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'auth@index');
 Route::post('/auth', 'auth@store');
 
+Route::patch('/user/absen/{user_absen}', 'User@update');
+
+Route::get('/user/absen', 'User@edit');
+
+// Route::get('/update_data', 'User@update_data');
+
 Route::get('/user', 'user@index');
 
 Route::get('/absens/{session}', 'Absens@index');
+
+// Route::get('/absens/{session}')
